@@ -2,14 +2,51 @@
 
 using namespace std;
 
-int UCLN(int a,int b){
-	if(b==0) {return a;}
-	if(a%b==0) {return b;}
-	return UCLN(b,a%b);
+struct node{
+	int data;
+	node *next;
+};
+node *createNode(int x){
+    node *temp = new node;
+    temp->next = temp;
+    temp->data = x; 
+    return temp;
+}
+void printList(node *l, int k){
+	node *p = l;
+	for (int i = 0; i < k; i++){
+		p = p->next;
+	}
+	cout << p->data << " ";
+	node *p2 = p->next;
+	while (p2 != p){
+		cout << p2->data << " ";
+		p2 = p2->next;
+	}
+}
+node *addTail(node *l, int x){
+	node *p = l;
+	while (p->next != l){
+		p = p->next;
+	}
+	node *temp = new node;
+	temp->data = x;
+	temp->next = l;
+	p->next = temp;
+	p = temp;
+	return l;
 }
 int main(){
-	int m,n;
-	cin >>m>> n;
-	cout << UCLN(max(m,n),min(m,n));
+	int n, x, k;
+	cin >> n;
+	cin >> x;
+	node *l = createNode(x);
+	node *p = l;
+	for (int i = 1; i < n; i++){
+		cin >> x;
+		l = addTail(l, x);
+	}
+	cin >> k;
+	printList(l, k);
 	return 0;
 }
