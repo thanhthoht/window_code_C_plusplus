@@ -1,15 +1,24 @@
 #include<iostream>
-#include<stack>
-#include<vector>
+#include<queue>
 using namespace std;
 int main(){
-	int n;
-	cin>>n;
-	vector<string> a;
-	for(int i=0;i<n;i++){
-		cin >> a[i];
+    queue<int> q;
+    int n,k,temp;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>temp;
+        q.push(temp);
+    }
+    cin>>k;
+	for(int i=0;i<k;i++){
+		int x=q.front();
+		q.pop();
+		q.push(x);
 	}
-	for(int i=0;i<n;i++){
-		cout << a[i];
+	while (!q.empty())
+	{
+		cout<<q.front()<<" ";
+		q.pop();
 	}
+	
 }
