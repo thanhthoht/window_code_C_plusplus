@@ -46,13 +46,37 @@ void printList(DoubleList *t){
 		p=p->next;
 	}
 }
-int main(){
-	int k;
-	cin>>k;
-	DoubleList *t=create(1);
-	for(int i=2;i<=k;i++){
-		t=addHead(t,i);
-		t=addTail(t,i);
+DoubleList *Insert(DoubleList *t,int v,int x){
+	node *p=t->head;
+	for(int i=0;i<v-1;i++){
+		p=p->next;
 	}
+	node *temp=new node;
+	temp->data=x;
+	temp->pre=p;
+	temp->next=p->next;
+	p->next->pre=temp;
+	p->next=temp;
+	return t;
+}
+int main(){
+	int k,x;
+	cin>>k>>x;
+	DoubleList *t=create(x);
+	for(int i=1;i<k;i++){
+		cin>>x;
+		t=addTail(t,x);
+	}
+	int vitri,giatri;
+	cin>>vitri>>giatri;
+	if(vitri==0){
+        addHead(t,giatri);
+    }
+    else if(vitri==k-1){
+        addTail(t,giatri);
+    }
+    else if(vitri>0&&vitri<k-1){
+        Insert(t,vitri,giatri);
+    }
 	printList(t);
 }

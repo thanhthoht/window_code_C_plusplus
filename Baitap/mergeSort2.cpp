@@ -20,17 +20,24 @@ void merge(int array[],int left,int mid,int right){
 	*/
 	while(left_idx<l	&&	right_idx<r){
 		if(leftarray[left_idx]<=rightarray[right_idx]){
-			array[merge_idx++]=leftarray[left_idx++];
+			array[merge_idx]=leftarray[left_idx];
+			left_idx++;
 		}
 		else{
-			array[merge_idx++]=rightarray[right_idx++];
+			array[merge_idx]=rightarray[right_idx];
+			right_idx++;
 		}
+		merge_idx++;
 	}
 	while(left_idx<l){
-		array[merge_idx++]=leftarray[left_idx++];
+		array[merge_idx]=leftarray[left_idx];
+		merge_idx++;
+		left_idx++;
 	}
 	while(right_idx<r){
-		array[merge_idx++]=rightarray[right_idx++];
+		array[merge_idx]=rightarray[right_idx];
+		merge_idx++;
+		right_idx++;
 	}
 }
 
