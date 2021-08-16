@@ -1,37 +1,21 @@
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
-
-int search(int array[],int b, int n,int y,int k){
-	int x=y;
-	for(int i=b;i<n;i++){
-		x=x-array[i];
-		if(x==0){
-			cout<<"YES";
-			i=n;
-			break;		
-		}
-		else if(x<0){
-			continue;
-		}
-		else {
-			b=b+1;			
-			search(array,b,n,x,k);
-			if(b==n){
-				cout<<"NO";
-			}
-		}
-		x=k;
-}
-return 0;
-}
-int main(){
-	int n,x;
-	cin>>n>>x;
-	int *array=new int[100];
+  
+int main()
+{
+	int n;
+	cin>>n;
+	int k;
+    vector<int> v;
 	for(int i=0;i<n;i++){
-		cin>>array[i];
+		cin>>k;
+		v.push_back(k);
 	}
-	int k=x;
-	search(array,0,n,x,k);
+    sort(v.begin(), v.end());
+  
+    cout << "Sorted \n";
+    for (auto x : v)
+        cout << x << " ";
+  
+    return 0;
 }
-//Em van chua bug dc code :((	
